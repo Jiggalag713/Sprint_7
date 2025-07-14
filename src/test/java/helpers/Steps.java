@@ -57,7 +57,7 @@ public class Steps {
     }
 
     @Step("Cancel order")
-    public void cancelOrder(Integer orderId) {
-        api.sendCancelOrderRequest(orderId);
+    public void cancelOrder(Integer trackId) {
+        api.sendCancelOrderRequest(trackId);
     }
 }

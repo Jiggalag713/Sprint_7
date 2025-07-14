@@ -19,7 +19,7 @@ public class AcceptOrderTest {
         Response acceptResponse = api.sendAcceptOrderRequest(orderId, courierId);
         steps.compareStatusCode(acceptResponse, 200);
         steps.deleteCourier("src/test/resources/courier/create/courier.json");
-        steps.cancelOrder(orderId);
+        steps.cancelOrder(trackId);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class AcceptOrderTest {
         Integer orderId = steps.getOrderId(orderResponse);
         Response acceptResponse = api.sendAcceptOrderRequest(orderId, null);
         steps.compareStatusCode(acceptResponse, 400);
-        steps.cancelOrder(orderId);
+        steps.cancelOrder(trackId);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class AcceptOrderTest {
         Integer orderId = steps.getOrderId(orderResponse);
         Response acceptResponse = api.sendAcceptOrderRequest(orderId, 99999999);
         steps.compareStatusCode(acceptResponse, 404);
-        steps.cancelOrder(orderId);
+        steps.cancelOrder(trackId);
     }
 
     @Test

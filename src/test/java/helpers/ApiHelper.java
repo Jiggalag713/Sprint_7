@@ -67,11 +67,9 @@ public class ApiHelper {
     }
 
     @Step("Send PUT to /api/v1/orders/cancel")
-    public void sendCancelOrderRequest(Integer orderId) {
+    public void sendCancelOrderRequest(Integer trackId) {
         given()
-                .header("Content-type", "application/json")
-                .body("{\"track\": " + orderId + "}")
-                .when()
+                .queryParam("track", trackId)
                 .put(baseURI + "/api/v1/orders/cancel");
     }
 
