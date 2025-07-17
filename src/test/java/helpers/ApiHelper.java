@@ -15,8 +15,7 @@ public class ApiHelper {
     }
 
     @Step("Send POST to /api/v1/courier")
-    public Response sendCreateCourierRequest(String path) {
-        File json = new File(path);
+    public Response sendCreateCourierRequest(String json) {
         return given()
                 .header("Content-type", "application/json")
                 .body(json)
@@ -25,8 +24,7 @@ public class ApiHelper {
     }
 
     @Step("Send POST to /api/v1/courier/login")
-    public Response sendLoginCourierRequest(String path) {
-        File json = new File(path);
+    public Response sendLoginCourierRequest(String json) {
         return given()
                 .header("Content-type", "application/json")
                 .body(json)
@@ -44,8 +42,7 @@ public class ApiHelper {
     }
 
     @Step("Send POST to /api/v1/orders")
-    public Response sendPostOrderRequest(String path) {
-        File json = new File(path);
+    public Response sendPostOrderRequest(String json) {
         return given()
                 .header("Content-type", "application/json")
                 .body(json)

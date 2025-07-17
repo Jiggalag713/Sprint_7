@@ -36,8 +36,8 @@ public class Steps {
     }
 
     @Step("Remove created courier")
-    public void deleteCourier(String path) {
-        Response loginResponse = API.sendLoginCourierRequest(path);
+    public void deleteCourier(String json) {
+        Response loginResponse = API.sendLoginCourierRequest(json);
         Integer id = getCourierId(loginResponse);
         Response deleteResponse = API.sendDeleteCourierRequest(id);
         compareStatusCode(deleteResponse, 200);
@@ -51,8 +51,8 @@ public class Steps {
     }
 
     @Step("Create order and return order id")
-    public Integer createOrder(String path) {
-        Response response = API.sendPostOrderRequest(path);
+    public Integer createOrder(String json) {
+        Response response = API.sendPostOrderRequest(json);
         return getOrderTrackId(response);
     }
 
