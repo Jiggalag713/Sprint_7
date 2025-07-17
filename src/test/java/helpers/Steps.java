@@ -6,9 +6,9 @@ import io.restassured.response.Response;
 import static org.hamcrest.Matchers.equalTo;
 
 public class Steps {
-    private final ApiHelper API;
+    private final ApiHelper api;
     public Steps(ApiHelper api) {
-        this.API = api;
+        this.api = api;
     }
     @Step("Compare actual status code with expected")
     public void compareStatusCode(Response response, Integer statusCode) {
@@ -37,27 +37,27 @@ public class Steps {
 
     @Step("Remove created courier")
     public void deleteCourier(String json) {
-        Response loginResponse = API.sendLoginCourierRequest(json);
+        Response loginResponse = api.sendLoginCourierRequest(json);
         Integer id = getCourierId(loginResponse);
-        Response deleteResponse = API.sendDeleteCourierRequest(id);
+        Response deleteResponse = api.sendDeleteCourierRequest(id);
         compareStatusCode(deleteResponse, 200);
     }
 
     @Step("Create courier and return courier id")
     public Integer createCourier(String path) {
-        API.sendCreateCourierRequest(path);
-        Response loginResponse = API.sendLoginCourierRequest(path);
+        api.sendCreateCourierRequest(path);
+        Response loginResponse = api.sendLoginCourierRequest(path);
         return getCourierId(loginResponse);
     }
 
     @Step("Create order and return order id")
     public Integer createOrder(String json) {
-        Response response = API.sendPostOrderRequest(json);
+        Response response = api.sendPostOrderRequest(json);
         return getOrderTrackId(response);
     }
 
     @Step("Cancel order")
     public void cancelOrder(Integer trackId) {
-        API.sendCancelOrderRequest(trackId);
+        api.sendCancelOrderRequest(trackId);
     }
 }
